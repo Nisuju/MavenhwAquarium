@@ -1,60 +1,38 @@
 package epam;
 
-import TaskTwoPair.Aquarium;
-import TaskTwoPair.Fish;
+import TwoAquarium.Aquarium;
+import TwoAquarium.Fish;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
-
-        List<Fish> listObjectsEnteredConsole = new ArrayList<Fish>();
         Scanner scanner = new Scanner(System.in);
-        Aquarium aquarium = new Aquarium() {
-            @Override
-            public void addFish(Fish fish) {
-                super.addFish(fish);
-            }
-        };
-
-        System.out.print("How many fish will you add? ");
-        int numberOfFishToBeEntered = scanner.nextInt();
+        Aquarium aquarium = new Aquarium();
 
 
-        for (int i = 0; i < numberOfFishToBeEntered; i++) {
+        while (true) {
+            System.out.print("Text anything to start: ");
             String anyString = scanner.nextLine();
-            System.out.print("Enter the fishType: ");
-            String fishType = scanner.nextLine();
-            System.out.println("fishType entered");
-            System.out.print("Enter the fishName: ");
-            String fishName = scanner.nextLine();
-            System.out.println("fishName entered");
-            System.out.print("Enter the fishAge: ");
-            int fishAge = scanner.nextInt();
-            System.out.println("fishAGe entered");
-            listObjectsEnteredConsole.add(new Fish(fishType, fishName, fishAge){
-                @Override
-                public String getName() {
-                    return super.getName();
-                }
-            });
+            System.out.print("If you want to input fish then enter <1>, otherwise enter <0> ");
+            String check = scanner.nextLine();
+            if (check.equals("1")) {
+                System.out.print("Enter the fish's type ");
+                String fishType = scanner.nextLine();
+                System.out.print("Enter the fish's name ");
+                String fishName = scanner.nextLine();
+                System.out.print("Enter the fish's age ");
+                int fishAge = scanner.nextInt();
+                Fish fish = new Fish(fishType, fishName, fishAge);
+                aquarium.addFish(fish);
 
-            System.out.println("OBJECT CREATED");//1
+            } else {
+                break;
+            }
 
         }
-
-        for(int i=0;i<numberOfFishToBeEntered;i++){
-            aquarium.addFish(listObjectsEnteredConsole.get(i));
-        }
- //       listObjectsEnteredConsole.get(0).setAge(999); // просто хотел показать что могу редактирвать поля,подумал вдруг нужно
-
         aquarium.showAllFishesInAquarium();
 
 
-
     }
-
 }
