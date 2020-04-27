@@ -42,7 +42,7 @@ public class Main {
                 }
             });
 
-            System.out.println("OBJECT CREATED");
+            System.out.println("OBJECT CREATED");//1
 
         }
 
